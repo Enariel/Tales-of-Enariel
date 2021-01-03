@@ -18,6 +18,6 @@ namespace Tales_Of_Enariel
 {
     public interface IInteractable
     {
-        public void Interact();
+        void Interact();
     }
 }
