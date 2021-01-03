@@ -9,6 +9,9 @@ using UnityEngine;
 *	and gets input from the player controller.
 *  ===========================================
 */
+
+//TODO MODIFY THIS SCRIPT TO USE MOUSE MOVEMENT AND NAV_MESH AGENTS
+
 namespace Tales_Of_Enariel
 {
 	public class Player_Movement : MonoBehaviour
@@ -97,7 +100,7 @@ namespace Tales_Of_Enariel
 				pc.PlayerBody.transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
 				//Move player
-				pc.PlayerBody.transform.position = new Vector3(pc.PlayerBody.transform.position.x + pc.Change.x * PlayerWalkSpeed * Time.deltaTime, pc.PlayerBody.transform.position.y + pc.Change.y * PlayerWalkSpeed * Time.deltaTime, playerZed);
+				pc.PlayerBody.transform.position = new Vector3(pc.PlayerBody.transform.position.x + pc.Change.x * PlayerWalkSpeed * Time.deltaTime, playerZed, pc.PlayerBody.transform.position.y + pc.Change.y * PlayerWalkSpeed * Time.deltaTime);
 			}
 		}
 	}
