@@ -17,12 +17,11 @@ namespace Tales_Of_Enariel
 		#region Variables
 		//Input
 		private Controls inputActions;
-
 		private InputAction moveInput;
 		private InputAction runInput;
 		//References
-		[SerializeField] private Rigidbody2D playerBody;
 		[SerializeField] private Animator playerAnim;
+		[SerializeField] private CharacterController playerCharacterController;
 		//Variables
 		private Vector2 change = new Vector2(0f, 0f);
 		#endregion
@@ -30,8 +29,10 @@ namespace Tales_Of_Enariel
 		#region Unity Methods
 		private void Awake()
 		{
-			//Get player rigidbody
-			playerBody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+			//Get references
+			playerCharacterController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
+			playerAnim = playerCharacterController.gameObject.GetComponent<Animator>();
+
 			//Generate player input
 			if (inputActions == null)
 			{
@@ -61,7 +62,7 @@ namespace Tales_Of_Enariel
 		public Controls InputActions { get => inputActions; }
 		public InputAction MoveInput { get => moveInput; }
 		public InputAction RunInput { get => runInput; }
-		public Rigidbody2D PlayerBody { get => playerBody; }
 		public Vector2 Change { get => change; set => change = value; }
+		public CharacterController PlayerCharacterController { get => playerCharacterController; }
 	}
 }
