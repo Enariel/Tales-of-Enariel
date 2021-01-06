@@ -1,11 +1,6 @@
 //Copyright (c) FuchsFarbe
 //Author: Oliver
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 /* ============================================
 *                   IInteractable
 * --------------------------------------------
@@ -18,6 +13,6 @@ namespace Tales_Of_Enariel
 {
     public interface IInteractable
     {
-        void Interact();
+        public abstract void Interact();
     }
 }

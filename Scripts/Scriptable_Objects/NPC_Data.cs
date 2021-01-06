@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Tales_Of_Enariel.NPCs
 {
     [CreateAssetMenu(fileName = "Nameless", menuName = "Scriptable Objects/New NPC")]
-    public class NPC : ScriptableObject
+    public class NPC_Data : ScriptableObject
     {
         #region Variables
         //Variables

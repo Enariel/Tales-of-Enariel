@@ -8,6 +8,7 @@ namespace Tales_Of_Enariel
 		HighFomor,
 		Fomor,
 		Human,
-		Elf
+		Elf,
+		Dragon
 	}
 }
