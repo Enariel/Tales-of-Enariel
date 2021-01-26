@@ -36,8 +36,16 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Interact"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""f2b10fc0-ac38-4b85-a0d9-321f3f401934"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Use Item"",
+                    ""type"": ""Value"",
+                    ""id"": ""db67462b-e8fe-4113-98f4-cc7441ce013e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -100,6 +108,61 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""9ab2493b-7114-473e-b93e-a300e79bfb5e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fb4e6782-04f3-4053-8f27-1d9b5640d396"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""53866531-ef0a-4b88-8536-799f76e0882b"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e578d1a2-ecd8-47fc-a9d7-9bed784af615"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8a4372fb-a51f-424c-8f21-200018a1e702"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""53543124-b4c0-4631-a96e-1149da25daea"",
                     ""path"": ""<Keyboard>/leftShift"",
@@ -120,6 +183,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ed3bd31-4114-4ca7-a1fb-0aafbe76775d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use Item"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -131,6 +205,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Movement_Walk = m_Movement.FindAction("Walk", throwIfNotFound: true);
         m_Movement_Run = m_Movement.FindAction("Run", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+        m_Movement_UseItem = m_Movement.FindAction("Use Item", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +258,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Movement_Walk;
     private readonly InputAction m_Movement_Run;
     private readonly InputAction m_Movement_Interact;
+    private readonly InputAction m_Movement_UseItem;
     public struct MovementActions
     {
         private @Controls m_Wrapper;
@@ -190,6 +266,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Walk => m_Wrapper.m_Movement_Walk;
         public InputAction @Run => m_Wrapper.m_Movement_Run;
         public InputAction @Interact => m_Wrapper.m_Movement_Interact;
+        public InputAction @UseItem => m_Wrapper.m_Movement_UseItem;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +285,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
+                @UseItem.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnUseItem;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +301,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
             }
         }
     }
@@ -230,5 +313,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
     }
 }
