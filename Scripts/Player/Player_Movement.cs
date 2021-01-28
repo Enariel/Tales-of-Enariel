@@ -22,47 +22,30 @@ namespace Tales_Of_Enariel
 		private Player_Controller pc;
 		private Camera mainCamera;
 		//Variables
-		//Serialized fields
+		private const float GRAVITY = -9.81f;
+
+		[SerializeField] private bool isRunning;
+		[SerializeField] private bool isGrounded;
 		[SerializeField] private float baseSpeed;
-		private float playerWalkSpeed;
+		[SerializeField] private float playerWalkSpeed;
 		[SerializeField] private float runningSpeed;
-		[SerializeField] private float turnSmoothVelocity = 0.1f, turnSmoothTime = 0.1f;
-		[SerializeField] private bool isRunning = false;
-		private Vector3 direction;
+		[SerializeField] private float jumpHeight;
+		[SerializeField] private float turnSmoothVelocity = 0.1f, turnSmoothTime = 0.1f, turnTime = .1f;
+		[SerializeField] private float groundCheckRadius;
+		[SerializeField] private LayerMask groundLayer;
+		[SerializeField] private Vector3 direction;
+		[SerializeField] private Vector3 gVelocity;
+		[SerializeField] private Vector3 groundCheckOffset;
+		[SerializeField] private Vector3 moveDir;
+		[SerializeField] private float currentTimer, baseTime;
 
 		//Properties
-		public float PlayerWalkSpeed 
-		{
-			get
-			{
-				if (pc.RunInput.ReadValue<float>() > 0.1f)
-				{
-					if (playerWalkSpeed == runningSpeed)
-					{
-						return runningSpeed;
-					}
-					else if (playerWalkSpeed < runningSpeed)
-					{
-						return playerWalkSpeed += Time.deltaTime;
-					}
-				}
-				else if (pc.RunInput.ReadValue<float>() < 0.1f)
-				{
-					if (playerWalkSpeed == baseSpeed)
-					{
-						return baseSpeed;
-					}
-					else if (playerWalkSpeed < baseSpeed)
-					{
-						return playerWalkSpeed += Time.deltaTime;
-					}
-				}
-				return playerWalkSpeed = baseSpeed;
-			} 
-		}
+		public float PlayerWalkSpeed { get => baseSpeed; }
+		public Vector3 PlayerVelocity { get => pc.PlayerCharacterController.velocity; }
 
 		#endregion
 
+		#region Unity Methods
 		//Get components
 		private void Awake()
 		{
@@ -82,17 +65,46 @@ namespace Tales_Of_Enariel
 			Debug.Log(pc.Change);
 		}
 
+		public void OnDrawGizmos()
+		{
+			Gizmos.DrawWireSphere(transform.position + groundCheckOffset, groundCheckRadius);
+		} 
+		#endregion
+
+		private void DoGravity()
+		{
+			isGrounded = Physics.CheckSphere(transform.position + groundCheckOffset, groundCheckRadius, groundLayer);
+
+			if (isGrounded && gVelocity.y < 0)
+			{
+				gVelocity.y = -2f;
+			}
+			//Multiplied times Time.deltaTime twice to square the gravity.
+			gVelocity.y += GRAVITY * Time.deltaTime;
+			pc.PlayerCharacterController.Move(gVelocity * Time.deltaTime);
+		}
+
+		private void Jump(bool canJump = false)
+		{
+			if (isGrounded && canJump)
+			{
+				gVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * GRAVITY);
+			}
+		}
+
 		private void MovePlayer()
 		{
 			//Get input delta
 			pc.Change = pc.MoveInput.ReadValue<Vector2>();
 			//The desired direction the character should face
 			direction = new Vector3(pc.Change.x, 0f, pc.Change.y);
+			moveDir = direction;
 			//Normalize values to find magnitude
 			direction.Normalize();
 
 			if (direction != Vector3.zero)
 			{
+				currentTimer = baseTime;
 				//Some magic angle math I'm too small-brained to understand
 				//Thank you brackeys for this
 				//Basically this gets the camera angle and heading and bases player movement off that.
@@ -102,9 +114,34 @@ namespace Tales_Of_Enariel
 				//Rotate only the player, not the Player_Controller
 				transform.rotation = Quaternion.Euler(0f, angle, 0f);
 				//Set forward move direction
-				Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-				pc.PlayerCharacterController.Move(moveDir * PlayerWalkSpeed * direction.magnitude * Time.deltaTime);
+				moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+				
 			}
+			else
+			{
+				currentTimer -= Time.deltaTime;
+
+				if (currentTimer < 0f)
+				{
+					currentTimer = 0f;
+				}
+				if (currentTimer <= 0f)
+				{
+					//Rotation after 10s
+					var targetRotation = Quaternion.Euler(0f, -180f, 0f);
+					transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnTime);
+				}
+				//Slow movement to stop over time
+				if (pc.PlayerCharacterController.velocity != Vector3.zero)
+				{
+					moveDir.x = PlayerVelocity.x * -Time.deltaTime;
+					moveDir.y = PlayerVelocity.y * -Time.deltaTime;
+				}
+			}
+
+			Jump();
+			pc.PlayerCharacterController.Move(moveDir * PlayerWalkSpeed * direction.magnitude * Time.deltaTime);
+			DoGravity();
 		}
 	}
 }
