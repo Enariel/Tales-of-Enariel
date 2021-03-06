@@ -183,15 +183,248 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Combat"",
+            ""id"": ""94dd7c80-5fc1-4b6e-a88a-168ace332296"",
+            ""actions"": [
+                {
+                    ""name"": ""LoadSpell1"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3460344-fb14-4f9e-aa2d-15256319edde"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 },
                 {
+                    ""name"": ""LoadSpell2"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3ab3509-459f-46dc-b707-b31a49d8b25e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LoadSpell3"",
+                    ""type"": ""Button"",
+                    ""id"": ""79edae2a-f221-4adc-b24c-243d30298dee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LoadSpell4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f241bcaa-9bb5-4a78-93f3-09ae3d5e1c20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleHotBar"",
+                    ""type"": ""Button"",
+                    ""id"": ""daa55745-4613-4871-a9dc-93139ff6988c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""6de486ce-18c7-4513-993b-02de2c9e9533"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""8ed3bd31-4114-4ca7-a1fb-0aafbe76775d"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""80521500-db4b-44bf-b7dd-baac62eba99a"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Use Item"",
+                    ""action"": ""LoadSpell1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d541bae8-46cc-41da-af93-df4693bc32ec"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadSpell2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""151ad947-60c8-4c35-9a8e-0ac16c3a09c7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadSpell3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45daa87e-e401-444b-a284-f41c4332c794"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadSpell4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbc20b4b-6d52-4faa-8775-c7eb08e03740"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleHotBar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5da759c-e37a-418b-ae99-528dfecaa35f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""5d1ab0bd-c3a0-486e-aca1-e3397d28db81"",
+            ""actions"": [
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""Value"",
+                    ""id"": ""81810e0b-bca6-47e4-9e3d-7be9ad9e93e2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Left_Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""08513324-fe05-478f-b604-6d99463fef3e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Right_Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b068492-b595-46e5-aa32-620c6700cd29"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""35349391-bd24-4c9b-be7b-230cc026aee6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""66793a40-c4c7-4eb6-b93f-fa8e04b18e34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""461edd91-0f8e-45af-8ebd-530752c39268"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d4d87b94-5047-4d80-9374-d7e178493ebe"",
+                    ""path"": ""<Pointer>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0b23987-613c-4055-9fe0-63c89df50aac"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left_Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7be41779-8075-4f0e-b772-4571e2b53357"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right_Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78d19dc7-fdb7-4248-b7a8-4b89e908d3b4"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3964ece4-4785-4b87-99d1-646aaf1a55ea"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0a5202c-3255-41cc-b3dc-72bbca94926c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -206,6 +439,22 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Movement_Run = m_Movement.FindAction("Run", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
         m_Movement_UseItem = m_Movement.FindAction("Use Item", throwIfNotFound: true);
+        // Combat
+        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
+        m_Combat_LoadSpell1 = m_Combat.FindAction("LoadSpell1", throwIfNotFound: true);
+        m_Combat_LoadSpell2 = m_Combat.FindAction("LoadSpell2", throwIfNotFound: true);
+        m_Combat_LoadSpell3 = m_Combat.FindAction("LoadSpell3", throwIfNotFound: true);
+        m_Combat_LoadSpell4 = m_Combat.FindAction("LoadSpell4", throwIfNotFound: true);
+        m_Combat_ToggleHotBar = m_Combat.FindAction("ToggleHotBar", throwIfNotFound: true);
+        m_Combat_Attack = m_Combat.FindAction("Attack", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+        m_UI_Left_Click = m_UI.FindAction("Left_Click", throwIfNotFound: true);
+        m_UI_Right_Click = m_UI.FindAction("Right_Click", throwIfNotFound: true);
+        m_UI_Scroll = m_UI.FindAction("Scroll", throwIfNotFound: true);
+        m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
+        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -308,11 +557,175 @@ public class @Controls : IInputActionCollection, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // Combat
+    private readonly InputActionMap m_Combat;
+    private ICombatActions m_CombatActionsCallbackInterface;
+    private readonly InputAction m_Combat_LoadSpell1;
+    private readonly InputAction m_Combat_LoadSpell2;
+    private readonly InputAction m_Combat_LoadSpell3;
+    private readonly InputAction m_Combat_LoadSpell4;
+    private readonly InputAction m_Combat_ToggleHotBar;
+    private readonly InputAction m_Combat_Attack;
+    public struct CombatActions
+    {
+        private @Controls m_Wrapper;
+        public CombatActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LoadSpell1 => m_Wrapper.m_Combat_LoadSpell1;
+        public InputAction @LoadSpell2 => m_Wrapper.m_Combat_LoadSpell2;
+        public InputAction @LoadSpell3 => m_Wrapper.m_Combat_LoadSpell3;
+        public InputAction @LoadSpell4 => m_Wrapper.m_Combat_LoadSpell4;
+        public InputAction @ToggleHotBar => m_Wrapper.m_Combat_ToggleHotBar;
+        public InputAction @Attack => m_Wrapper.m_Combat_Attack;
+        public InputActionMap Get() { return m_Wrapper.m_Combat; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
+        public void SetCallbacks(ICombatActions instance)
+        {
+            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
+            {
+                @LoadSpell1.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell1;
+                @LoadSpell1.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell1;
+                @LoadSpell1.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell1;
+                @LoadSpell2.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell2;
+                @LoadSpell2.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell2;
+                @LoadSpell2.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell2;
+                @LoadSpell3.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell3;
+                @LoadSpell3.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell3;
+                @LoadSpell3.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell3;
+                @LoadSpell4.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell4;
+                @LoadSpell4.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell4;
+                @LoadSpell4.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnLoadSpell4;
+                @ToggleHotBar.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnToggleHotBar;
+                @ToggleHotBar.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnToggleHotBar;
+                @ToggleHotBar.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnToggleHotBar;
+                @Attack.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnAttack;
+            }
+            m_Wrapper.m_CombatActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @LoadSpell1.started += instance.OnLoadSpell1;
+                @LoadSpell1.performed += instance.OnLoadSpell1;
+                @LoadSpell1.canceled += instance.OnLoadSpell1;
+                @LoadSpell2.started += instance.OnLoadSpell2;
+                @LoadSpell2.performed += instance.OnLoadSpell2;
+                @LoadSpell2.canceled += instance.OnLoadSpell2;
+                @LoadSpell3.started += instance.OnLoadSpell3;
+                @LoadSpell3.performed += instance.OnLoadSpell3;
+                @LoadSpell3.canceled += instance.OnLoadSpell3;
+                @LoadSpell4.started += instance.OnLoadSpell4;
+                @LoadSpell4.performed += instance.OnLoadSpell4;
+                @LoadSpell4.canceled += instance.OnLoadSpell4;
+                @ToggleHotBar.started += instance.OnToggleHotBar;
+                @ToggleHotBar.performed += instance.OnToggleHotBar;
+                @ToggleHotBar.canceled += instance.OnToggleHotBar;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+            }
+        }
+    }
+    public CombatActions @Combat => new CombatActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Point;
+    private readonly InputAction m_UI_Left_Click;
+    private readonly InputAction m_UI_Right_Click;
+    private readonly InputAction m_UI_Scroll;
+    private readonly InputAction m_UI_Submit;
+    private readonly InputAction m_UI_Cancel;
+    public struct UIActions
+    {
+        private @Controls m_Wrapper;
+        public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Point => m_Wrapper.m_UI_Point;
+        public InputAction @Left_Click => m_Wrapper.m_UI_Left_Click;
+        public InputAction @Right_Click => m_Wrapper.m_UI_Right_Click;
+        public InputAction @Scroll => m_Wrapper.m_UI_Scroll;
+        public InputAction @Submit => m_Wrapper.m_UI_Submit;
+        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Left_Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLeft_Click;
+                @Left_Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLeft_Click;
+                @Left_Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLeft_Click;
+                @Right_Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRight_Click;
+                @Right_Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRight_Click;
+                @Right_Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRight_Click;
+                @Scroll.started -= m_Wrapper.m_UIActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnScroll;
+                @Submit.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
+                @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
+                @Left_Click.started += instance.OnLeft_Click;
+                @Left_Click.performed += instance.OnLeft_Click;
+                @Left_Click.canceled += instance.OnLeft_Click;
+                @Right_Click.started += instance.OnRight_Click;
+                @Right_Click.performed += instance.OnRight_Click;
+                @Right_Click.canceled += instance.OnRight_Click;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IMovementActions
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
+    }
+    public interface ICombatActions
+    {
+        void OnLoadSpell1(InputAction.CallbackContext context);
+        void OnLoadSpell2(InputAction.CallbackContext context);
+        void OnLoadSpell3(InputAction.CallbackContext context);
+        void OnLoadSpell4(InputAction.CallbackContext context);
+        void OnToggleHotBar(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnPoint(InputAction.CallbackContext context);
+        void OnLeft_Click(InputAction.CallbackContext context);
+        void OnRight_Click(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }
