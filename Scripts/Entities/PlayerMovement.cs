@@ -51,7 +51,6 @@ namespace Tales_Of_Enariel.Entities
 				if (Physics.Raycast(ray, out hit))
 				{
 					agent.SetDestination(hit.point);
-					Debug.Log(hit.point);
 				}
 			}
 		}

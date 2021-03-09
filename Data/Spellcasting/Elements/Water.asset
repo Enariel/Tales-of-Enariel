@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fa98e7353ef943a343d02797d6140, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  element: 0
-  mainPrefab: {fileID: 833747929949902526, guid: 5f8aa076a3559404a838fdbb8a701020, type: 3}
-  AoEPrefab: {fileID: 0}
-  DoTPrefab: {fileID: 0}
-  miscEffect: {fileID: 0}
-  handEffectSelected: {fileID: 0}
+  elementName: Water
+  elementDesc: The element of change.
   elementIcon: {fileID: 0}
+  element: 0
+  aoeData:
+    aoeType: 0
+    radius: 10
+    size: {x: 0, y: 0, z: 0}
+  mainParticleEffect: {fileID: 4101002629806021501, guid: 1442a0292cbbf4241b5bdb9de76620fd, type: 3}
+  mainSpellPrefab: {fileID: 833747929949902526, guid: 5f8aa076a3559404a838fdbb8a701020, type: 3}
+  AoESpellPrefab: {fileID: 0}
+  groundEffect: {fileID: 0}
+  damageOverTimeEffect: {fileID: 0}
+  aoeCollider: {fileID: 0}

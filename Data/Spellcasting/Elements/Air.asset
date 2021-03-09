@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fa98e7353ef943a343d02797d6140, type: 3}
   m_Name: Air
   m_EditorClassIdentifier: 
-  element: 3
-  mainPrefab: {fileID: 6095187340790501979, guid: f0fcad94eb93c3746a99c41900b387e1, type: 3}
-  AoEPrefab: {fileID: 0}
-  DoTPrefab: {fileID: 0}
-  miscEffect: {fileID: 0}
-  handEffectSelected: {fileID: 0}
+  elementName: Air
+  elementDesc: The element of freedom.
   elementIcon: {fileID: 0}
+  element: 3
+  aoeData:
+    aoeType: 1
+    radius: 1
+    size: {x: 7, y: 2, z: 5}
+  mainParticleEffect: {fileID: 7600834355849510915, guid: d3aa754ebada6fc4fab8ff19d3d81906, type: 3}
+  mainSpellPrefab: {fileID: 6095187340790501979, guid: f0fcad94eb93c3746a99c41900b387e1, type: 3}
+  AoESpellPrefab: {fileID: 7714778506643068154, guid: d3aa754ebada6fc4fab8ff19d3d81906, type: 3}
+  groundEffect: {fileID: 0}
+  damageOverTimeEffect: {fileID: 0}

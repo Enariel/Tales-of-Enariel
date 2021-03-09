@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fa98e7353ef943a343d02797d6140, type: 3}
   m_Name: Earth
   m_EditorClassIdentifier: 
-  element: 1
-  mainPrefab: {fileID: 2534632074571221630, guid: 7accb276e47ab6647ac4b53dc83baab5, type: 3}
-  AoEPrefab: {fileID: 0}
-  DoTPrefab: {fileID: 0}
-  miscEffect: {fileID: 0}
-  handEffectSelected: {fileID: 0}
+  elementName: Earth
+  elementDesc: The element of strength.
   elementIcon: {fileID: 0}
+  element: 1
+  aoeData:
+    aoeType: 1
+    radius: 0
+    size: {x: 3, y: 1, z: 2}
+  mainParticleEffect: {fileID: 6422139980143477116, guid: 9af3f8c099bd5454bbe676ecabcd5ae1, type: 3}
+  mainSpellPrefab: {fileID: 2534632074571221630, guid: 7accb276e47ab6647ac4b53dc83baab5, type: 3}
+  groundEffect: {fileID: 0}
+  damageOverTimeEffect: {fileID: 0}
+  aoeCollider: {fileID: 0}

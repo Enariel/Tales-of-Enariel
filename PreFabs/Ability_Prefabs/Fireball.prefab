@@ -4813,9 +4813,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 455350557421074762}
-  - component: {fileID: 455350557421074767}
-  - component: {fileID: 455350557421074756}
   - component: {fileID: 3347515788265231431}
+  - component: {fileID: -1692763339099382449}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -4831,7 +4830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455350557421074766}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 18.973701, y: 0, z: -162.13109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455350557803702017}
@@ -4840,20 +4839,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &455350557421074767
-MonoBehaviour:
+--- !u!135 &3347515788265231431
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455350557421074766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 049ea83b98b83754693e6e10b746e170, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleEmitters: []
---- !u!54 &455350557421074756
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-1692763339099382449
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4864,24 +4863,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!135 &3347515788265231431
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455350557421074766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3862375074869798991
 PrefabInstance:
   m_ObjectHideFlags: 0

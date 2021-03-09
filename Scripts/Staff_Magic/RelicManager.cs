@@ -9,32 +9,16 @@ namespace Tales_Of_Enariel.StaffCasting
 {
     public class RelicManager : MonoBehaviour
     {
-        public static Action<Element> OnElementSelected;
-		public static Action<ElementData> OnRelicStart;
-		public static Action<ElementData> OnRelicUpdate;
-		public static Action<ElementData> OnRelicEnd;
+		public static Action<Spell, GameObject, Vector3> OnRelicStart;
+		public static Action<Spell, GameObject, Vector3> OnRelicUpdate;
+		public static Action<Spell, GameObject, Vector3> OnRelicEnd;
 
 		#region Variables
-		[SerializeField] private Element selectedElement;
-		[SerializeField] private List<ElementData> currentRelics;
-		[SerializeField] private List<ElementData> relicInventory;
+		[SerializeField] private List<RelicData> currentRelics;
+		[SerializeField] private List<RelicData> relicInventory;
+
+		public List<RelicData> CurrentRelics { get => currentRelics; set => currentRelics = value; }
+		public List<RelicData> RelicInventory { get => relicInventory; set => relicInventory = value; }
 		#endregion
-
-		#region Unity Methods
-		private void OnEnable()
-		{
-			OnElementSelected += ElementSelected;
-		}
-
-		private void OnDisable()
-		{
-			OnElementSelected -= ElementSelected;
-		}
-		#endregion
-
-		public void ElementSelected(Element e)
-		{
-			Debug.Log(e);
-		}
-    }
+	}
 }

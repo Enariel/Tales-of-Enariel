@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fa98e7353ef943a343d02797d6140, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
-  element: 2
-  mainPrefab: {fileID: 455350557421074766, guid: 19286529b98c21b4cbf476994cbe24c6, type: 3}
-  AoEPrefab: {fileID: 0}
-  DoTPrefab: {fileID: 0}
-  miscEffect: {fileID: 0}
-  handEffectSelected: {fileID: 0}
+  elementName: Fire
+  elementDesc: The element of passion.
   elementIcon: {fileID: 0}
+  element: 2
+  aoeData:
+    aoeType: 0
+    radius: 2
+    size: {x: 0, y: 0, z: 0}
+  mainParticleEffect: {fileID: 9092360404622393498, guid: 018f69d5ddf68de46854773996a5455d, type: 3}
+  mainSpellPrefab: {fileID: 455350557421074766, guid: 19286529b98c21b4cbf476994cbe24c6, type: 3}
+  AoESpellPrefab: {fileID: 0}
+  groundEffect: {fileID: 0}
+  damageOverTimeEffect: {fileID: 0}
+  aoeCollider: {fileID: 0}

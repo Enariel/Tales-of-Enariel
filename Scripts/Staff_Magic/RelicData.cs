@@ -7,43 +7,44 @@ using UnityEngine;
 
 namespace Tales_Of_Enariel.StaffCasting
 {
-    public class RelicData : ScriptableObject
+	public class RelicData : ScriptableObject
     {
         #region Variables
-        [SerializeField] private string relicName;
-        [SerializeField] private string relicDesc;
-        [SerializeField] private string relicID;
+        [SerializeField] protected string relicName;
+        [SerializeField] protected string relicDesc;
+        [SerializeField] protected string relicID;
+		[SerializeField] protected int relicTier;
 		#endregion
 
 		#region Unity Methods
-		private void OnEnable()
+		public virtual void OnEnable()
 		{
-			
+			RelicManager.OnRelicStart += RelicStart;
+			RelicManager.OnRelicUpdate += RelicUpdate;
+			RelicManager.OnRelicEnd += RelicEnd;
+
+			relicID = $"{relicName}_{relicTier}";
 		}
 
-		private void OnDisable()
+		public virtual void OnDisable()
 		{
-			
+			RelicManager.OnRelicStart -= RelicStart;
+			RelicManager.OnRelicUpdate -= RelicUpdate;
+			RelicManager.OnRelicEnd -= RelicEnd;
+		}
+
+		public virtual void RelicStart(Spell spell, GameObject caster, Vector3 target)
+		{
+			Debug.Log(relicName + "On Start");
+		}
+		public virtual void RelicUpdate(Spell spell, GameObject caster, Vector3 target)
+		{
+			Debug.Log(relicName + "On Update");
+		}
+		public virtual void RelicEnd(Spell spell, GameObject caster, Vector3 target)
+		{
+			Debug.Log(relicName + "On End");
 		}
 		#endregion
-	}
-
-	[System.Serializable]
-	public class ActiveSpell
-	{
-		//The active spell is made of the current element and the forms currently selected.
-		//A new active spell is created each time a spell is cast by the player. 
-		private ElementData elementData;
-		private List<RelicData> relicDatas = new List<RelicData>();
-		private GameObject caster;
-		private Vector3 targetDirection; //The direction to cast the spell in
-
-		public ActiveSpell(ElementData elementData, List<RelicData> relicDatas, GameObject caster, Vector3 targetDirection)
-		{
-			this.elementData = elementData;
-			this.relicDatas = relicDatas;
-			this.caster = caster;
-			this.targetDirection = targetDirection;
-		}
 	}
 }
