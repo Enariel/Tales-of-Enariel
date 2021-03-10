@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 637593086}
   - component: {fileID: 637593091}
   - component: {fileID: 637593090}
+  - component: {fileID: 637593088}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -507,6 +508,21 @@ MonoBehaviour:
   maxStr: 0
   maxDex: 0
   maxDef: 0
+--- !u!114 &637593088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a159eefc02998bb458db9a79ba3fced1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboStage: 0
+  maxTime: 0
+  curTime: 0
 --- !u!195 &637593089
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -693,7 +709,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-224014
+  m_Name: pb_Mesh19284
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5162,12 +5178,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db7c082325d4d64f83e9e5964794051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relicChain:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentRelics:
   - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
   - {fileID: 11400000, guid: 5369ec1e38f609a4d914032eda21fbae, type: 2}
   relicInventory:
   - {fileID: 11400000, guid: 5369ec1e38f609a4d914032eda21fbae, type: 2}
   - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
+  defaultRelic: {fileID: 0}
 --- !u!4 &2028551853
 Transform:
   m_ObjectHideFlags: 0
@@ -5234,6 +5256,19 @@ MonoBehaviour:
   caster: {fileID: 0}
   playerCaster: {fileID: 0}
   mainCam: {fileID: 0}
+  log: {fileID: 4900000, guid: 90b25f40f6dc74e41b9e9ab865d447f3, type: 3}
+  currentSpell:
+    relicDatas: []
+    curRelicData: {fileID: 0}
+    elementData: {fileID: 0}
+    spellPrefab: {fileID: 0}
+    caster: {fileID: 0}
+    target: {x: 0, y: 0, z: 0}
+    col: {fileID: 0}
+    aoe:
+      aoeType: 0
+      radius: 0
+      size: {x: 0, y: 0, z: 0}
 --- !u!1 &96933774497170989
 GameObject:
   m_ObjectHideFlags: 0

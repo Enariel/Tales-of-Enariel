@@ -20,11 +20,6 @@ namespace Tales_Of_Enariel.StaffCasting
         [SerializeField] private GameObject groundEffect;
         [SerializeField] private GameObject damageOverTimeEffect;
 
-		public void OnEnable()
-		{
-			
-		}
-
 		public Element Element { get => element; }
 		public AoEData AoEData { get => aoeData; }
 		public GameObject MainPrefab { get => mainSpellPrefab; }

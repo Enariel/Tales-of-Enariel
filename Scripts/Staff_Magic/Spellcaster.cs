@@ -2,6 +2,8 @@
 //Author: Oliver
 
 using System;
+using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace Tales_Of_Enariel.StaffCasting
@@ -9,7 +11,7 @@ namespace Tales_Of_Enariel.StaffCasting
 	//Get input and load it into new spell data and fire events.
 	public class Spellcaster : MonoBehaviour
 	{
-		public static Action OnComboStart;
+		public static Action OnPlayerCast;
 
 		[SerializeField] private RelicManager rm;
 		[SerializeField] private ElementManager em;
@@ -17,6 +19,8 @@ namespace Tales_Of_Enariel.StaffCasting
 		[SerializeField] private GameObject caster;
 		[SerializeField] private GameObject playerCaster;
 		[SerializeField] private Camera mainCam;
+
+		[SerializeField] private TextAsset log;
 
 		[SerializeField] private Spell currentSpell;
 
@@ -34,23 +38,24 @@ namespace Tales_Of_Enariel.StaffCasting
 		{
 			if (Input.GetMouseButtonUp(0))
 			{
-				OnComboStart?.Invoke();
+				OnPlayerCast?.Invoke();
 			}
 		}
 
 		public void OnEnable()
 		{
-			OnComboStart += ExecutePlayerSpell;
+			OnPlayerCast += PlayerCast;
 		}
 
 		public void OnDisable()
 		{
-			OnComboStart -= ExecutePlayerSpell;
+			OnPlayerCast -= PlayerCast;
 		}
 
-		private void ExecutePlayerSpell()
+		private void PlayerCast()
 		{
-			anim = playerCaster.GetComponentInChildren<Animator>();
+			StreamWriter s = new StreamWriter(log.name, true);
+			ComboManager cm = playerCaster.GetComponent<ComboManager>();
 
 			Vector3 target = new Vector3();
 
@@ -63,11 +68,22 @@ namespace Tales_Of_Enariel.StaffCasting
 			}
 
 			//Create new spell
-			currentSpell = new Spell(em.CurrentElementData, rm.CurrentRelics, playerCaster, target);
+			currentSpell = new Spell(em.CurrentElementData, rm.RelicChainData[cm.ComboStage], playerCaster, target);
+		}
 
-			//Invoke the beginning of the spell.
-			RelicManager.OnRelicStart.Invoke(currentSpell, playerCaster, target);
-			anim.SetTrigger("Attack");
+		private string LogData(Spell spell)
+		{
+			string s = $"\n" +
+				$"=========================================\n" +
+				$"---------- Spell Information ------------" +
+				$"Main Element: {spell.ElementData.Element.ToString()}\n" +
+				$"Relic: {spell.CurrentRelicData.name}\n" +
+				$"-----------------------------------------\n" +
+				$"-------------- Update Datas -------------" +
+				$"Caster:               {spell.Caster.name}\n" +
+				$"State:                {spell.RelicState}";
+
+			return s;
 		}
 	}
 }
