@@ -6,23 +6,9 @@ using UnityEngine;
 
 namespace Tales_Of_Enariel.StaffCasting
 {
-	[CreateAssetMenu(fileName = "Momentum", menuName = "Staff-Casting/Relics/Relic of Momentum")]
-	public class RelicOfMomentum : RelicData
+	[CreateAssetMenu(fileName = "Control", menuName = "Staff-Casting/Relics/Relic of Control")]
+	public class RelicOfControl : RelicData
 	{
-		[SerializeField] private float speed;
-
-		#region Unity Methods
-		public override void OnEnable()
-		{
-			base.OnEnable();
-		}
-
-		public override void OnDisable()
-		{
-			base.OnDisable();
-		}
-		#endregion
-
 		#region Relic Override States
 		public override IEnumerator StartRelicAction(Spell spell, Vector3 target)
 		{

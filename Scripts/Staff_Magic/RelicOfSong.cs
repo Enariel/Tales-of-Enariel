@@ -1,6 +1,7 @@
 ﻿//copyright(c) FuchsFarbe
 //Author: Oliver
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,28 +20,24 @@ namespace Tales_Of_Enariel.StaffCasting
 		{
 			base.OnEnable();
 		}
-
-		public override void RelicStart(Spell spell, GameObject caster, Vector3 target)
-		{
-			base.RelicStart(spell, caster, target);
-
-
-		}
-
-		public override void RelicUpdate(Spell spell, GameObject caster, Vector3 target)
-		{
-			base.RelicUpdate(spell, caster, target);
-
-			Debug.Log(spell.ElementData.AoEData);
-		}
-
-		public override void RelicEnd(Spell spell, GameObject caster, Vector3 target)
-		{
-			base.RelicEnd(spell, caster, target);
-		}
-
 		#endregion
 
+		#region Relic Override States
+		public override IEnumerator StartRelicAction(Spell spell, Vector3 target)
+		{
+			return base.StartRelicAction(spell, target);
+		}
+
+		public override IEnumerator UpdateRelicAction(Spell spell, Vector3 target)
+		{
+			return base.UpdateRelicAction(spell, target);
+		}
+
+		public override IEnumerator EndRelicAction(Spell spell, Vector3 target)
+		{
+			return base.EndRelicAction(spell, target);
+		}
+		#endregion
 		private Collider SetCollider(AoEData data)
 		{
 			switch (data.AoEType)

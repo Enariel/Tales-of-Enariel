@@ -1,6 +1,8 @@
 //copyright(c) FuchsFarbe
 //Author: Oliver
 
+using System;
+using Tales_Of_Enariel.StaffCasting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,14 +33,17 @@ namespace Tales_Of_Enariel.Entities
 		{
 			SetDestination();
 
-			if (agent.velocity != Vector3.zero)
-			{
-				//player is moving
-			}
-			else
-			{
-				//player is idle
-			}
+			animator.SetFloat("Speed", agent.velocity.magnitude);
+		}
+
+		private void OnEnable()
+		{
+			Spellcaster.OnPlayerCast += HaltMovement;
+		}
+
+		private void OnDisable()
+		{
+			
 		}
 		#endregion
 		private void SetDestination()
@@ -54,5 +59,17 @@ namespace Tales_Of_Enariel.Entities
 				}
 			}
 		}
+
+		private void SetDirection()
+		{
+
+		}
+
+		private void HaltMovement()
+		{
+			Debug.Log(transform.position);
+			agent.SetDestination(transform.position);
+		}
+
 	}
 }

@@ -16,14 +16,13 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		#region Variables
 		[SerializeField] private RelicData[] relicChain = new RelicData[4];
-		[SerializeField] private List<RelicData> currentRelics;
 		[SerializeField] private List<RelicData> relicInventory;
 		[SerializeField] private RelicData defaultRelic;
 
 		//Properties
-		public List<RelicData> CurrentRelics { get => currentRelics; set => currentRelics = value; }
 		public List<RelicData> RelicInventory { get => relicInventory; set => relicInventory = value; }
 		public RelicData[] RelicChainData { get => relicChain; }
+		public RelicData DefaultRelic { get => defaultRelic; }
 		#endregion
 	}
 }

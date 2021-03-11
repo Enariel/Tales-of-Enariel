@@ -3,51 +3,90 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Tales_Of_Enariel.StaffCasting
 {
+	//This class manages the combo steps and stages
+
 	public class ComboManager : MonoBehaviour
 	{
-		//Combo needs the offhand element, current stage of the combo, and the relic at the corresponding stage;
-		//A new spell is defined by the element as well as the stage the combo is at with the corresponding relic.
-		//Each relic takes in an element to define what it does in the SO.
-		//Combo stage
+		//Input
+		private Controls c;
+		private InputAction attackAction;
+		//Animator
+		[SerializeField] private Animator anim;
+		[SerializeField] private string comboAnimParam;
+		//Combo
+		[SerializeField] private bool comboPossible;
+		[SerializeField] private int stage;
+		[SerializeField] private int maxCombo;
 
-		[SerializeField] [Range(0, 3)] private int comboStage;
-		[Tooltip("Time between clicking the player can increment the combo.")] 
-		[SerializeField] private float maxTime;
-		[SerializeField] private float curTime;
+		public int ComboStage { get => stage; }
 
-		//Properties
-		public int ComboStage { get => comboStage; }
+		private void Awake()
+		{
+			//Set up inputs
+			c = new Controls();
+			attackAction = c.Combat.Attack;
 
+			//Animator
+			anim = this.gameObject.GetComponent<Animator>();
+
+			//Input events
+			attackAction.performed += ctx => Attack();
+		}
 		private void Update()
 		{
-			if (curTime > 0)
-			{
-				curTime -= Time.deltaTime;
-			}
+			SetComboAnimParams();
 		}
 
 		private void OnEnable()
 		{
-			Spellcaster.OnPlayerCast += DoCombo;
+			attackAction.Enable();
 		}
 
 		private void OnDisable()
 		{
-			Spellcaster.OnPlayerCast -= DoCombo;
+			attackAction.Disable();
 		}
 
-		private void DoCombo()
+		public void Attack()
 		{
-			curTime = maxTime;
-			comboStage++;
+			if (stage > maxCombo)
+			{
+				stage = 0;
+			}
+			if (stage == 0)
+			{
+				stage += 1;
+				Spellcaster.OnPlayerCast.Invoke();
+			}
+			if (stage != 0)
+			{
+				if (comboPossible)
+				{
+					comboPossible = false;
+					stage += 1;
+					Spellcaster.OnPlayerCast.Invoke();
+				}
+			}
 		}
 
-		private void TryIncrementCombo()
+		public void ComboPossible()
 		{
+			comboPossible = true;
+		}
 
+		public void SetComboAnimParams()
+		{
+			anim.SetInteger(comboAnimParam, stage);
+		}
+
+		public void ComboReset()
+		{
+			comboPossible = false;
+			stage = 0;
 		}
 	}
 }

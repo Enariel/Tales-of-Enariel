@@ -2,6 +2,7 @@
 //Author: Oliver
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,37 +15,45 @@ namespace Tales_Of_Enariel.StaffCasting
         [SerializeField] protected string relicDesc;
         [SerializeField] protected string relicID;
 		[SerializeField] protected int relicTier;
+
+		//Properties
+		public string RelicName { get => relicName; }
+		public string RelicDesc { get => relicDesc; }
+		public string RelicID { get => relicID; }
+		public int RelicTier { get => relicTier; }
 		#endregion
 
 		#region Unity Methods
 		public virtual void OnEnable()
 		{
-			RelicManager.OnRelicStart += RelicStart;
-			RelicManager.OnRelicUpdate += RelicUpdate;
-			RelicManager.OnRelicEnd += RelicEnd;
 
 			relicID = $"{relicName}_{relicTier}";
 		}
 
 		public virtual void OnDisable()
 		{
-			RelicManager.OnRelicStart -= RelicStart;
-			RelicManager.OnRelicUpdate -= RelicUpdate;
-			RelicManager.OnRelicEnd -= RelicEnd;
+
+		}
+		#endregion
+
+		#region RelicStates
+		public virtual IEnumerator StartRelicAction(Spell spell, Vector3 target)
+		{
+			Debug.Log("Started relic action");
+			yield return null;
 		}
 
-		public virtual void RelicStart(Spell spell, GameObject caster, Vector3 target)
+		public virtual IEnumerator UpdateRelicAction(Spell spell, Vector3 target)
 		{
-			Debug.Log(relicName + "On Start");
+			Debug.Log("Updating relic action");
+			yield return null;
 		}
-		public virtual void RelicUpdate(Spell spell, GameObject caster, Vector3 target)
+
+		public virtual IEnumerator EndRelicAction(Spell spell, Vector3 target)
 		{
-			Debug.Log(relicName + "On Update");
-		}
-		public virtual void RelicEnd(Spell spell, GameObject caster, Vector3 target)
-		{
-			Debug.Log(relicName + "On End");
-		}
+			Debug.Log("Ending relic action");
+			yield return null;
+		} 
 		#endregion
 	}
 }

@@ -15,12 +15,10 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		[SerializeField] private RelicManager rm;
 		[SerializeField] private ElementManager em;
+		[SerializeField] private ComboManager cm;
 		[SerializeField] private Animator anim;
 		[SerializeField] private GameObject caster;
-		[SerializeField] private GameObject playerCaster;
 		[SerializeField] private Camera mainCam;
-
-		[SerializeField] private TextAsset log;
 
 		[SerializeField] private Spell currentSpell;
 
@@ -28,18 +26,11 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		private void Awake()
 		{
-			rm = GetComponent<RelicManager>();
-			em = GetComponent<ElementManager>();
+			rm = this.gameObject.GetComponent<RelicManager>();
+			em = this.gameObject.GetComponent<ElementManager>();
+			cm = this.gameObject.GetComponent<ComboManager>();
 			mainCam = Camera.main;
-			playerCaster = GameObject.FindGameObjectWithTag("Player");
-		}
-
-		public void Update()
-		{
-			if (Input.GetMouseButtonUp(0))
-			{
-				OnPlayerCast?.Invoke();
-			}
+			caster = this.gameObject;
 		}
 
 		public void OnEnable()
@@ -54,21 +45,28 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		private void PlayerCast()
 		{
-			StreamWriter s = new StreamWriter(log.name, true);
-			ComboManager cm = playerCaster.GetComponent<ComboManager>();
-
-			Vector3 target = new Vector3();
+			Vector3 direction = new Vector3();
 
 			Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit))
 			{
-				target = hit.point;
+				direction = hit.point;
 			}
 
-			//Create new spell
-			currentSpell = new Spell(em.CurrentElementData, rm.RelicChainData[cm.ComboStage], playerCaster, target);
+			Debug.Log("Spell direction is: " + direction.normalized);
+
+			RelicData rd = rm.RelicChainData[cm.ComboStage - 1];
+			
+			if (rd == null)
+			{
+				rd = rm.DefaultRelic;
+			}
+
+			currentSpell = new Spell(em.CurrentElementData, rd, caster, direction);
+
+			StartCoroutine(currentSpell.StartSpell());
 		}
 
 		private string LogData(Spell spell)

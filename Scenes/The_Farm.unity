@@ -404,6 +404,10 @@ GameObject:
   - component: {fileID: 637593091}
   - component: {fileID: 637593090}
   - component: {fileID: 637593088}
+  - component: {fileID: 637593095}
+  - component: {fileID: 637593094}
+  - component: {fileID: 637593093}
+  - component: {fileID: 637593092}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -520,9 +524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a159eefc02998bb458db9a79ba3fced1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboStage: 0
-  maxTime: 0
-  curTime: 0
+  anim: {fileID: 0}
+  comboAnimParam: AttackStage
 --- !u!195 &637593089
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -575,6 +578,90 @@ CapsuleCollider:
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.875, z: 0}
+--- !u!95 &637593092
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 693f560b09914c7449369f37979be9d9, type: 3}
+  m_Controller: {fileID: 9100000, guid: aa441fe68eb369b4cbe7d7f82f58592a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &637593093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08014278fb0eb54a82905e05455ad8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rm: {fileID: 0}
+  em: {fileID: 0}
+  anim: {fileID: 0}
+  caster: {fileID: 0}
+  playerCaster: {fileID: 0}
+  mainCam: {fileID: 0}
+  log: {fileID: 0}
+  currentSpell:
+    relicDatas: []
+    curRelicData: {fileID: 0}
+    elementData: {fileID: 0}
+    spellPrefab: {fileID: 0}
+    caster: {fileID: 0}
+    target: {x: 0, y: 0, z: 0}
+    col: {fileID: 0}
+    aoe:
+      aoeType: 0
+      radius: 0
+      size: {x: 0, y: 0, z: 0}
+--- !u!114 &637593094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db7c082325d4d64f83e9e5964794051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relicChain:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentRelics: []
+  relicInventory: []
+  defaultRelic: {fileID: 0}
+--- !u!114 &637593095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8821d8d686b6e04a9cf3ac57893a5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentElementData: {fileID: 0}
+  elements: []
 --- !u!1 &680522710
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +796,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19284
+  m_Name: pb_Mesh19290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -958,7 +1045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 115.8, y: -30, z: 0}
 --- !u!1 &1065253096
 GameObject:
@@ -5156,9 +5243,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2028551853}
   - component: {fileID: 2028551854}
-  - component: {fileID: 2028551852}
-  - component: {fileID: 2028551855}
-  - component: {fileID: 2028551856}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -5166,30 +5250,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2028551852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028551851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9db7c082325d4d64f83e9e5964794051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relicChain:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentRelics:
-  - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
-  - {fileID: 11400000, guid: 5369ec1e38f609a4d914032eda21fbae, type: 2}
-  relicInventory:
-  - {fileID: 11400000, guid: 5369ec1e38f609a4d914032eda21fbae, type: 2}
-  - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
-  defaultRelic: {fileID: 0}
 --- !u!4 &2028551853
 Transform:
   m_ObjectHideFlags: 0
@@ -5220,55 +5280,6 @@ MonoBehaviour:
   snowObj: {fileID: 0}
   rainObj: {fileID: 0}
   newWeatherType: 0
---- !u!114 &2028551855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028551851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8821d8d686b6e04a9cf3ac57893a5a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentElementData: {fileID: 0}
-  elements:
-  - {fileID: 11400000, guid: 839889b96e2e6874086a796102303633, type: 2}
-  - {fileID: 11400000, guid: 637613611b3c4ea48b4b8a8f1dd10fd2, type: 2}
-  - {fileID: 11400000, guid: 5d843f1aa638a724f88d6e9f2aa1902c, type: 2}
-  - {fileID: 11400000, guid: 3e08a349036a97b4db858d531ddcee72, type: 2}
---- !u!114 &2028551856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028551851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08014278fb0eb54a82905e05455ad8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rm: {fileID: 0}
-  em: {fileID: 0}
-  anim: {fileID: 0}
-  caster: {fileID: 0}
-  playerCaster: {fileID: 0}
-  mainCam: {fileID: 0}
-  log: {fileID: 4900000, guid: 90b25f40f6dc74e41b9e9ab865d447f3, type: 3}
-  currentSpell:
-    relicDatas: []
-    curRelicData: {fileID: 0}
-    elementData: {fileID: 0}
-    spellPrefab: {fileID: 0}
-    caster: {fileID: 0}
-    target: {x: 0, y: 0, z: 0}
-    col: {fileID: 0}
-    aoe:
-      aoeType: 0
-      radius: 0
-      size: {x: 0, y: 0, z: 0}
 --- !u!1 &96933774497170989
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,7 +6169,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2529945426383941973}
-  - component: {fileID: 8501678041557166895}
   m_Layer: 3
   m_Name: Base_Humanoid
   m_TagString: Untagged
@@ -6637,7 +6647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5067888132695527474, guid: d1adaf590608f144fb0ec6f79e406cc5, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5067888132695527474, guid: d1adaf590608f144fb0ec6f79e406cc5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7559,25 +7569,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &8501678041557166895
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2907068450906926063}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 693f560b09914c7449369f37979be9d9, type: 3}
-  m_Controller: {fileID: 9100000, guid: aa441fe68eb369b4cbe7d7f82f58592a, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8538936766658130464
 GameObject:
   m_ObjectHideFlags: 0

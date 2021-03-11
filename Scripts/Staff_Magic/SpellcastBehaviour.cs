@@ -15,7 +15,7 @@ namespace Tales_Of_Enariel
 		{
 			//Get effect point
 			Transform[] transforms = animator.gameObject.GetComponentsInChildren<Transform>();
-			spellData = GameObject.FindGameObjectWithTag("GameController").GetComponent<Spellcaster>().CurrentSpell;
+
 			foreach (Transform transform in transforms)
 			{
 				if (transform.gameObject.CompareTag("StaffEffect"))
@@ -25,10 +25,14 @@ namespace Tales_Of_Enariel
 				}
 			}
 
+			spellData = animator.gameObject.GetComponent<Spellcaster>().CurrentSpell;
 			//Get main spell effect
-			mainEffect = spellData.ElementData.MainParticleEffect;
-			mainEffect = Instantiate(mainEffect, effectPoint.transform.position, Quaternion.identity, effectPoint);
-			mainEffect.Play();
+			if (spellData != null)
+			{
+				mainEffect = spellData.ElementData.MainParticleEffect;
+				mainEffect = Instantiate(mainEffect, effectPoint.transform.position, Quaternion.identity, effectPoint);
+				mainEffect.Play();
+			}
 		}
 
 		// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -40,8 +44,7 @@ namespace Tales_Of_Enariel
 		// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 		override public void OnStateExit(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
 		{
-			mainEffect.Stop();
-			animator.ResetTrigger("Attack");
+			mainEffect?.Stop();
 		}
 	}
 }
