@@ -10,20 +10,31 @@ namespace Tales_Of_Enariel.StaffCasting
 	public class RelicOfControl : RelicData
 	{
 		#region Relic Override States
-		public override IEnumerator StartRelicAction(Spell spell, Vector3 target)
-		{
-			return base.StartRelicAction(spell, target);
-		}
 
-		public override IEnumerator UpdateRelicAction(Spell spell, Vector3 target)
-		{
-			return base.UpdateRelicAction(spell, target);
-		}
-
-		public override IEnumerator EndRelicAction(Spell spell, Vector3 target)
-		{
-			return base.EndRelicAction(spell, target);
-		}
 		#endregion
+		public override IEnumerator InitializeRelic(Spell spell, GameObject caster, Vector3 target)
+		{
+			return base.InitializeRelic(spell, caster, target);
+		}
+
+		public override void OnEnable()
+		{
+			base.OnEnable();
+		}
+
+		public override IEnumerator OnRelicEnd(Spell spell, GameObject caster, Vector3 target)
+		{
+			return base.OnRelicEnd(spell, caster, target);
+		}
+
+		public override IEnumerator OnRelicHit(Spell spell, GameObject hit)
+		{
+			return base.OnRelicHit(spell, hit);
+		}
+
+		public override IEnumerator OnRelicSuccess(Spell spell, GameObject caster, Vector3 target)
+		{
+			return base.OnRelicSuccess(spell, caster, target);
+		}
 	}
 }

@@ -60,7 +60,6 @@ namespace Tales_Of_Enariel.StaffCasting
 			if (stage == 0)
 			{
 				stage += 1;
-				Spellcaster.OnPlayerCast.Invoke();
 			}
 			if (stage != 0)
 			{
@@ -68,7 +67,6 @@ namespace Tales_Of_Enariel.StaffCasting
 				{
 					comboPossible = false;
 					stage += 1;
-					Spellcaster.OnPlayerCast.Invoke();
 				}
 			}
 		}

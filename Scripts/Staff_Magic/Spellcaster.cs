@@ -45,28 +45,26 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		private void PlayerCast()
 		{
-			Vector3 direction = new Vector3();
+			Vector3 targetOrDirection = new Vector3();
+			RelicData relicData = rm.RelicChainData[cm.ComboStage - 1];
+
+			if (relicData == null)
+			{
+				relicData = rm.DefaultRelic;
+			}
 
 			Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit))
 			{
-				direction = hit.point;
+				targetOrDirection = hit.point;
 			}
 
-			Debug.Log("Spell direction is: " + direction.normalized);
+			//Create new 'Spell' with the current offhand element, the relic[comboStage], passing in the caster obj and direction.
+			currentSpell = new Spell(em.CurrentElementData, relicData, caster, targetOrDirection);
 
-			RelicData rd = rm.RelicChainData[cm.ComboStage - 1];
-			
-			if (rd == null)
-			{
-				rd = rm.DefaultRelic;
-			}
-
-			currentSpell = new Spell(em.CurrentElementData, rd, caster, direction);
-
-			StartCoroutine(currentSpell.StartSpell());
+			StartCoroutine(currentSpell.Cast());
 		}
 
 		private string LogData(Spell spell)

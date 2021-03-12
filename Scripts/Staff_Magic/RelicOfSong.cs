@@ -23,20 +23,7 @@ namespace Tales_Of_Enariel.StaffCasting
 		#endregion
 
 		#region Relic Override States
-		public override IEnumerator StartRelicAction(Spell spell, Vector3 target)
-		{
-			return base.StartRelicAction(spell, target);
-		}
 
-		public override IEnumerator UpdateRelicAction(Spell spell, Vector3 target)
-		{
-			return base.UpdateRelicAction(spell, target);
-		}
-
-		public override IEnumerator EndRelicAction(Spell spell, Vector3 target)
-		{
-			return base.EndRelicAction(spell, target);
-		}
 		#endregion
 		private Collider SetCollider(AoEData data)
 		{

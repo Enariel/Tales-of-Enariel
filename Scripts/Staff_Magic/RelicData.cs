@@ -37,23 +37,37 @@ namespace Tales_Of_Enariel.StaffCasting
 		#endregion
 
 		#region RelicStates
-		public virtual IEnumerator StartRelicAction(Spell spell, Vector3 target)
+		public virtual IEnumerator InitializeRelic(Spell spell, GameObject caster, Vector3 target)
 		{
 			Debug.Log("Started relic action");
 			yield return null;
 		}
 
-		public virtual IEnumerator UpdateRelicAction(Spell spell, Vector3 target)
+		public virtual IEnumerator OnRelicSuccess(Spell spell, GameObject caster, Vector3 target)
 		{
 			Debug.Log("Updating relic action");
 			yield return null;
 		}
 
-		public virtual IEnumerator EndRelicAction(Spell spell, Vector3 target)
+		public virtual IEnumerator OnRelicEnd(Spell spell, GameObject caster, Vector3 target)
 		{
 			Debug.Log("Ending relic action");
 			yield return null;
 		} 
+
+		public virtual IEnumerator OnRelicHit(Spell spell, GameObject hit)
+		{
+			yield return null;
+		}
+
 		#endregion
+
+		protected GameObject InitializeSpellPrefab(GameObject prefab, Transform spawnTarget, Vector3 offset = new Vector3())
+		{
+			GameObject spellPreFab = Instantiate(prefab, spawnTarget.transform.position + offset, Quaternion.identity);
+			return spellPreFab;
+		}
 	}
+
+
 }

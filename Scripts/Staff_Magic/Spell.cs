@@ -52,32 +52,12 @@ namespace Tales_Of_Enariel.StaffCasting
 			this.aoe = _elementData.AoEData;
 		}
 
-		public IEnumerator StartSpell()
+		public IEnumerator Cast()
 		{
-			state = "";
 			//Invoke the beginning of the spell.
-			state = "Start";
-			yield return curRelicData.StartRelicAction(this, target);
-			yield return UpdateSpell();
-		}
-
-		public IEnumerator UpdateSpell()
-		{
-			//Update the spell over frames depending on the current relic.
-			int i = 0;
-			while (i < 100)
-			{
-				yield return curRelicData.UpdateRelicAction(this, target);
-				Debug.Log("Updating" + curRelicData.RelicName);
-				i++;
-			}
-		}
-
-		public IEnumerator EndSpell()
-		{
-			state = "End";
-			yield return curRelicData.EndRelicAction(this, target);
-			state = "";
+			state = $"Casting spell: {elementData.Element.ToString()} {curRelicData.RelicName}";
+			Debug.Log(state);
+			yield return curRelicData.InitializeRelic(this, caster, target);
 		}
 	}
 }

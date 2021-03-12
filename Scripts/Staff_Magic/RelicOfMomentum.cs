@@ -10,6 +10,7 @@ namespace Tales_Of_Enariel.StaffCasting
 	public class RelicOfMomentum : RelicData
 	{
 		[SerializeField] private float speed;
+		[SerializeField] private float maxD;
 
 		#region Unity Methods
 		public override void OnEnable()
@@ -21,23 +22,58 @@ namespace Tales_Of_Enariel.StaffCasting
 		{
 			base.OnDisable();
 		}
+
 		#endregion
 
 		#region Relic Override States
-		public override IEnumerator StartRelicAction(Spell spell, Vector3 target)
+		public override IEnumerator InitializeRelic(Spell spell, GameObject caster, Vector3 target)
 		{
-			return base.StartRelicAction(spell, target);
+			base.InitializeRelic(spell, caster, target);
+
+			GameObject spellPrefab = InitializeSpellPrefab(spell.SpellPrefab, caster.transform);
+			var projInst = spellPrefab.AddComponent<Projectile>();
+			yield return projInst.FireProjectile(target);
 		}
 
-		public override IEnumerator UpdateRelicAction(Spell spell, Vector3 target)
+		public override IEnumerator OnRelicSuccess(Spell spell, GameObject caster, Vector3 target)
 		{
-			return base.UpdateRelicAction(spell, target);
+			return base.OnRelicSuccess(spell, caster, target);
 		}
 
-		public override IEnumerator EndRelicAction(Spell spell, Vector3 target)
+		public override IEnumerator OnRelicEnd(Spell spell, GameObject caster, Vector3 target)
 		{
-			return base.EndRelicAction(spell, target);
+			return base.OnRelicEnd(spell, caster, target);
+		}
+
+		public override IEnumerator OnRelicHit(Spell spell, GameObject hit)
+		{
+			return base.OnRelicHit(spell, hit);
 		}
 		#endregion
+	}
+
+	public class Projectile : MonoBehaviour
+	{
+		//Instance references
+		Spell spellInst;
+
+		Vector3 spawnPos;
+		Vector3 spawnDir;
+		Vector3 targetPos;
+		float speed = 10;
+
+		public IEnumerator FireProjectile(Vector3 targetPos)
+		{
+			var d = Vector3.Distance(this.gameObject.transform.position, targetPos);
+
+			while (d > .1f)
+			{
+				this.gameObject.transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+
+				yield return new WaitForEndOfFrame();
+			}
+
+			yield break;
+		}
 	}
 }

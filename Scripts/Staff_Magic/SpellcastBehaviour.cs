@@ -7,7 +7,7 @@ namespace Tales_Of_Enariel
     public class SpellcastBehaviour : StateMachineBehaviour
     {
 		//Replace the next two variables with a SpellData class
-		[SerializeField] private Spell spellData;
+		[SerializeField] private ElementData element;
 		[SerializeField] private Transform effectPoint;
 		[SerializeField] private ParticleSystem mainEffect;
 		// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -25,11 +25,11 @@ namespace Tales_Of_Enariel
 				}
 			}
 
-			spellData = animator.gameObject.GetComponent<Spellcaster>().CurrentSpell;
 			//Get main spell effect
-			if (spellData != null)
+			element = animator.gameObject.GetComponent<ElementManager>().CurrentElementData;
+			if (element != null)
 			{
-				mainEffect = spellData.ElementData.MainParticleEffect;
+				mainEffect = element.MainParticleEffect;
 				mainEffect = Instantiate(mainEffect, effectPoint.transform.position, Quaternion.identity, effectPoint);
 				mainEffect.Play();
 			}
@@ -45,6 +45,7 @@ namespace Tales_Of_Enariel
 		override public void OnStateExit(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
 		{
 			mainEffect?.Stop();
+			Destroy(mainEffect.gameObject, 5f);
 		}
 	}
 }

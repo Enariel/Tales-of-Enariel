@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d94198fd1c1cc441b2b9ba1b67ea56c, type: 3}
   m_Name: Relic of Control
   m_EditorClassIdentifier: 
-  relicName: 
-  relicDesc: 
-  relicID: _0
-  relicTier: 0
+  relicName: Relic of Control
+  relicDesc: This relic casts a CC on an enemy.
+  relicID: Relic of Control_1
+  relicTier: 1

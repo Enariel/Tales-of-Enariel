@@ -398,16 +398,16 @@ GameObject:
   m_Component:
   - component: {fileID: 637593084}
   - component: {fileID: 637593089}
+  - component: {fileID: 637593092}
+  - component: {fileID: 637593091}
+  - component: {fileID: 637593090}
   - component: {fileID: 637593085}
   - component: {fileID: 637593087}
   - component: {fileID: 637593086}
-  - component: {fileID: 637593091}
-  - component: {fileID: 637593090}
   - component: {fileID: 637593088}
   - component: {fileID: 637593095}
   - component: {fileID: 637593094}
   - component: {fileID: 637593093}
-  - component: {fileID: 637593092}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -526,6 +526,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   comboAnimParam: AttackStage
+  comboPossible: 0
+  stage: 0
+  maxCombo: 3
 --- !u!195 &637593089
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -611,18 +614,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rm: {fileID: 0}
   em: {fileID: 0}
+  cm: {fileID: 0}
   anim: {fileID: 0}
   caster: {fileID: 0}
-  playerCaster: {fileID: 0}
   mainCam: {fileID: 0}
-  log: {fileID: 0}
   currentSpell:
-    relicDatas: []
     curRelicData: {fileID: 0}
     elementData: {fileID: 0}
-    spellPrefab: {fileID: 0}
     caster: {fileID: 0}
     target: {x: 0, y: 0, z: 0}
+    spellPrefab: {fileID: 0}
     col: {fileID: 0}
     aoe:
       aoeType: 0
@@ -641,13 +642,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relicChain:
+  - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
+  - {fileID: 11400000, guid: 5369ec1e38f609a4d914032eda21fbae, type: 2}
+  - {fileID: 11400000, guid: 84f5069534bd63e41b6262604dc97cb6, type: 2}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentRelics: []
   relicInventory: []
-  defaultRelic: {fileID: 0}
+  defaultRelic: {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
 --- !u!114 &637593095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,7 +661,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentElementData: {fileID: 0}
-  elements: []
+  elements:
+  - {fileID: 11400000, guid: 3e08a349036a97b4db858d531ddcee72, type: 2}
+  - {fileID: 11400000, guid: 839889b96e2e6874086a796102303633, type: 2}
+  - {fileID: 11400000, guid: 637613611b3c4ea48b4b8a8f1dd10fd2, type: 2}
+  - {fileID: 11400000, guid: 5d843f1aa638a724f88d6e9f2aa1902c, type: 2}
 --- !u!1 &680522710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4973,8 +4977,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725558489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.685, y: 0.06, z: 0.056}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.57, y: 0.174, z: 0.056}
+  m_LocalScale: {x: 1, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 1351308509}
   m_Father: {fileID: 5992660169517479440}
@@ -5004,7 +5008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759474409}
   m_LocalRotation: {x: -0.000000054482364, y: 0.0000002197921, z: -0.00000010110669, w: 1}
-  m_LocalPosition: {x: -1.327, y: 0.057, z: 0.071}
+  m_LocalPosition: {x: -1.442, y: 0.171, z: 0.071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5992660169517479440}
