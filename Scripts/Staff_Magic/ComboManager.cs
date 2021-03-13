@@ -11,12 +11,13 @@ namespace Tales_Of_Enariel.StaffCasting
 
 	public class ComboManager : MonoBehaviour
 	{
+		//Events
+		public static Action OnComboStart;
+		public static Action OnCombatEnd;
+		public static Action<int> OnCombatStage;
 		//Input
 		private Controls c;
 		private InputAction attackAction;
-		//Animator
-		[SerializeField] private Animator anim;
-		[SerializeField] private string comboAnimParam;
 		//Combo
 		[SerializeField] private bool comboPossible;
 		[SerializeField] private int stage;
@@ -29,9 +30,6 @@ namespace Tales_Of_Enariel.StaffCasting
 			//Set up inputs
 			c = new Controls();
 			attackAction = c.Combat.Attack;
-
-			//Animator
-			anim = this.gameObject.GetComponent<Animator>();
 
 			//Input events
 			attackAction.performed += ctx => Attack();
@@ -69,6 +67,8 @@ namespace Tales_Of_Enariel.StaffCasting
 					stage += 1;
 				}
 			}
+
+			OnComboStart?.Invoke();
 		}
 
 		public void ComboPossible()
@@ -78,7 +78,7 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		public void SetComboAnimParams()
 		{
-			anim.SetInteger(comboAnimParam, stage);
+			OnCombatStage?.Invoke(stage);
 		}
 
 		public void ComboReset()

@@ -27,6 +27,8 @@ namespace Tales_Of_Enariel.StaffCasting
 				currentElementData = elements[0];
 			}
 			elementIndex = 0;
+
+			OnElementChange?.Invoke(currentElementData.Element);
 		}
 
 		public void Update()
@@ -40,6 +42,7 @@ namespace Tales_Of_Enariel.StaffCasting
 		{
 			//Mouse wheel input
 			Vector2 mouseDelta = Input.mouseScrollDelta;
+			mouseDelta.Normalize();
 
 			if (mouseDelta.magnitude >= .5f)
 			{

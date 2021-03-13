@@ -37,12 +37,16 @@ namespace Tales_Of_Enariel.StaffCasting
 		#endregion
 
 		#region RelicStates
+		//Initialize
+		//The spell starts to be cast
+		//Create prefabs here, add behaviours elsewhere.
 		public virtual IEnumerator InitializeRelic(Spell spell, GameObject caster, Vector3 target)
 		{
 			Debug.Log("Started relic action");
 			yield return null;
 		}
 
+		//Add behaviours to created prefabs
 		public virtual IEnumerator OnRelicSuccess(Spell spell, GameObject caster, Vector3 target)
 		{
 			Debug.Log("Updating relic action");
@@ -62,9 +66,14 @@ namespace Tales_Of_Enariel.StaffCasting
 
 		#endregion
 
-		protected GameObject InitializeSpellPrefab(GameObject prefab, Transform spawnTarget, Vector3 offset = new Vector3())
+		protected GameObject InitializeSpellPrefab(GameObject prefab, Transform spawnTransform, Vector3 targetPos = new Vector3(), float offset = 1.5f)
 		{
-			GameObject spellPreFab = Instantiate(prefab, spawnTarget.transform.position + offset, Quaternion.identity);
+			Vector3 dir = spawnTransform.position - targetPos;
+			dir.Normalize();
+			Vector3 spawnPoint = new Vector3 (dir.x * offset, spawnTransform.position.y + 1, dir.z * offset);
+			
+			GameObject spellPreFab = Instantiate(prefab, spawnTransform.position + spawnPoint, spawnTransform.rotation);
+
 			return spellPreFab;
 		}
 	}

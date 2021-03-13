@@ -408,6 +408,8 @@ GameObject:
   - component: {fileID: 637593095}
   - component: {fileID: 637593094}
   - component: {fileID: 637593093}
+  - component: {fileID: 637593096}
+  - component: {fileID: 637593097}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -524,8 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a159eefc02998bb458db9a79ba3fced1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  comboAnimParam: AttackStage
   comboPossible: 0
   stage: 0
   maxCombo: 3
@@ -540,9 +540,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 4
-  m_Acceleration: 8
+  m_Acceleration: 7
   avoidancePriority: 50
-  m_AngularSpeed: 500
+  m_AngularSpeed: 720
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -629,6 +629,7 @@ MonoBehaviour:
       aoeType: 0
       radius: 0
       size: {x: 0, y: 0, z: 0}
+  targetOrDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &637593094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,7 +646,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
   - {fileID: 11400000, guid: 5369ec1e38f609a4d914032eda21fbae, type: 2}
   - {fileID: 11400000, guid: 84f5069534bd63e41b6262604dc97cb6, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
   relicInventory: []
   defaultRelic: {fileID: 11400000, guid: 18e943ebe33d3e44e95136076da791ec, type: 2}
 --- !u!114 &637593095
@@ -666,6 +667,42 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 839889b96e2e6874086a796102303633, type: 2}
   - {fileID: 11400000, guid: 637613611b3c4ea48b4b8a8f1dd10fd2, type: 2}
   - {fileID: 11400000, guid: 5d843f1aa638a724f88d6e9f2aa1902c, type: 2}
+--- !u!114 &637593096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfee3ed5ba4f604098b87aac613ac92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  bones: []
+  rHand: {fileID: 0}
+  lHand: {fileID: 0}
+  weapon: {fileID: 0}
+--- !u!114 &637593097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637593083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ecb439020f073649a5f1acd991b9ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatMode: CombatMode
+  hasMana: hasMana
+  hasHealth: hasHealth
+  speed: Speed
+  animSpeedMod: AnimationSpeed
+  offHandElement: OffHandElement
+  combatStage: AttackStage
 --- !u!1 &680522710
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +837,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19290
+  m_Name: pb_Mesh19306
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6440,7 +6477,7 @@ GameObject:
   - component: {fileID: 4373641328863440480}
   m_Layer: 3
   m_Name: Left_Hand
-  m_TagString: Untagged
+  m_TagString: LHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7429,7 +7466,7 @@ GameObject:
   - component: {fileID: 5992660169517479440}
   m_Layer: 3
   m_Name: Right_Hand
-  m_TagString: Untagged
+  m_TagString: RHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,6 +12,7 @@ namespace Tales_Of_Enariel.StaffCasting
 	public class Spellcaster : MonoBehaviour
 	{
 		public static Action OnPlayerCast;
+		public static Action SetSpell;
 
 		[SerializeField] private RelicManager rm;
 		[SerializeField] private ElementManager em;
@@ -21,6 +22,7 @@ namespace Tales_Of_Enariel.StaffCasting
 		[SerializeField] private Camera mainCam;
 
 		[SerializeField] private Spell currentSpell;
+		[SerializeField] private Vector3 targetOrDirection;
 
 		public Spell CurrentSpell { get => currentSpell; set => currentSpell = value; }
 
@@ -36,23 +38,32 @@ namespace Tales_Of_Enariel.StaffCasting
 		public void OnEnable()
 		{
 			OnPlayerCast += PlayerCast;
+			ComboManager.OnComboStart += SetTargetDirection;
 		}
 
 		public void OnDisable()
 		{
 			OnPlayerCast -= PlayerCast;
+			ComboManager.OnComboStart += SetTargetDirection;
 		}
 
 		private void PlayerCast()
 		{
-			Vector3 targetOrDirection = new Vector3();
-			RelicData relicData = rm.RelicChainData[cm.ComboStage - 1];
+			RelicData relicData = rm?.RelicChainData[cm.ComboStage - 1];
 
 			if (relicData == null)
 			{
 				relicData = rm.DefaultRelic;
 			}
 
+			//Create new 'Spell' with the current offhand element, the relic[comboStage], passing in the caster obj and direction.
+			currentSpell = new Spell(em.CurrentElementData, relicData, caster, targetOrDirection);
+			StartCoroutine(currentSpell.Cast());
+		}
+
+		private void SetTargetDirection()
+		{
+			targetOrDirection = new Vector3();
 			Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
@@ -60,11 +71,6 @@ namespace Tales_Of_Enariel.StaffCasting
 			{
 				targetOrDirection = hit.point;
 			}
-
-			//Create new 'Spell' with the current offhand element, the relic[comboStage], passing in the caster obj and direction.
-			currentSpell = new Spell(em.CurrentElementData, relicData, caster, targetOrDirection);
-
-			StartCoroutine(currentSpell.Cast());
 		}
 
 		private string LogData(Spell spell)

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fa98e7353ef943a343d02797d6140, type: 3}
   m_Name: Air
   m_EditorClassIdentifier: 
+  element: 3
   elementName: Air
   elementDesc: The element of freedom.
   elementIcon: {fileID: 0}
-  element: 3
+  projectileSpeed: 15
   aoeData:
     aoeType: 1
     radius: 1

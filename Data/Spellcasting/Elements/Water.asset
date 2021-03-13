@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fa98e7353ef943a343d02797d6140, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
+  element: 0
   elementName: Water
   elementDesc: The element of change.
   elementIcon: {fileID: 0}
-  element: 0
+  projectileSpeed: 11
   aoeData:
     aoeType: 0
     radius: 10
@@ -25,4 +26,3 @@ MonoBehaviour:
   AoESpellPrefab: {fileID: 0}
   groundEffect: {fileID: 0}
   damageOverTimeEffect: {fileID: 0}
-  aoeCollider: {fileID: 0}

@@ -38,12 +38,12 @@ namespace Tales_Of_Enariel.Entities
 
 		private void OnEnable()
 		{
-			Spellcaster.OnPlayerCast += HaltMovement;
+			ComboManager.OnComboStart += HaltMovement;
 		}
 
 		private void OnDisable()
 		{
-			
+			ComboManager.OnComboStart -= HaltMovement;
 		}
 		#endregion
 		private void SetDestination()

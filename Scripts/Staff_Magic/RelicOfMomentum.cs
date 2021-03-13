@@ -30,8 +30,12 @@ namespace Tales_Of_Enariel.StaffCasting
 		{
 			base.InitializeRelic(spell, caster, target);
 
-			GameObject spellPrefab = InitializeSpellPrefab(spell.SpellPrefab, caster.transform);
-			var projInst = spellPrefab.AddComponent<Projectile>();
+			GameObject spellPrefab = InitializeSpellPrefab(spell.SpellPrefab, caster.transform, target, -1.25f);
+
+			var projInst = CreateProjectileInst(spellPrefab, spell, spell.ElementData.ElementProjectileSpeed);
+
+			projInst.SpellInst = spell;
+
 			yield return projInst.FireProjectile(target);
 		}
 
@@ -50,23 +54,42 @@ namespace Tales_Of_Enariel.StaffCasting
 			return base.OnRelicHit(spell, hit);
 		}
 		#endregion
+
+		protected Projectile CreateProjectileInst(GameObject projectile, Spell s, float speed)
+		{
+			Projectile p = projectile.AddComponent<Projectile>();
+			p.SpellInst = s;
+			p.Speed = speed;
+
+			return p;
+		}
 	}
 
+	[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 	public class Projectile : MonoBehaviour
 	{
 		//Instance references
 		Spell spellInst;
+		float speed;
+		//Prefab refs
+		private Rigidbody rb;
+		private Collider col;
 
-		Vector3 spawnPos;
-		Vector3 spawnDir;
-		Vector3 targetPos;
-		float speed = 10;
+		private void Start()
+		{
+			rb = this.gameObject.GetComponent<Rigidbody>();
+			col = this.gameObject.GetComponent<Collider>();
+		}
+
+		public Spell SpellInst { get => spellInst; set => spellInst = value; }
+		public float Speed { get => speed; set => speed = value; }
 
 		public IEnumerator FireProjectile(Vector3 targetPos)
 		{
 			var d = Vector3.Distance(this.gameObject.transform.position, targetPos);
+			targetPos = new Vector3(targetPos.x, targetPos.y + 1, targetPos.z);
 
-			while (d > .1f)
+			while (d > .25f)
 			{
 				this.gameObject.transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
@@ -74,6 +97,11 @@ namespace Tales_Of_Enariel.StaffCasting
 			}
 
 			yield break;
+		}
+
+		public void OnCollisionEnter(Collision collision)
+		{
+
 		}
 	}
 }
